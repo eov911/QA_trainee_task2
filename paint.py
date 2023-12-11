@@ -1,68 +1,84 @@
-from tkinter import *
-
-
-class Circle():
-    def __init__(self, x1, y1, x2, y2, color):
+class Circle:
+    def __init__(self, x1, y1, r):
         self.x1 = x1
         self.y1 = y1
-        self.x2 = x2
-        self.y2 = y2
-        self.color = color
-    
-    def draw(self, canvas):
-        canvas.create_oval(self.x1, self.y1, self.x2, self.y2, fill=self.color, outline=self.color) 
+        self.r = r
+        self.color = painter.color
+
+    def draw(self):
+        print(f'Drawing circle. Color: {self.color}')
 
 
-class Triangle():
-    def __init__(self, x1, y1, x2, y2, x3, y3, color):
+class Triangle:
+    def __init__(self, x1, y1, x2, y2, x3, y3):
         self.x1 = x1
         self.y1 = y1
         self.x2 = x2
         self.y2 = y2
         self.x3 = x3
         self.y3 = y3
-        self.color = color
+        self.color = painter.color
 
-    def draw(self, canvas):
-        canvas.create_polygon(self.x1, self.y1, self.x2, self.y2, self.x3, self.y3, outline=self.color, fill=self.color)
+    def draw(self):
+        print(f'Drawing triangle. Color: {self.color}')
 
 
-class Rectangle():
-    def __init__(self, x1, y1, x2, y2, color):
+class Rectangle:
+    def __init__(self, x1, y1, x2, y2):
         self.x1 = x1
         self.y1 = y1
         self.x2 = x2
         self.y2 = y2
-        self.color = color
-    
-    def draw(self, canvas):
-        canvas.create_rectangle(self.x1, self.y1, self.x2, self.y2, fill = self.color, outline = self.color)
+        self.color = painter.color
+
+    def draw(self):
+        print(f'Drawing rectangle. Color: {self.color}')
 
 
-class Engine2D():
+class Canvas:
+    canvas_list = []
+
     def __init__(self, width, height):
         self.width = width
         self.height = height
-        self.root = Tk()
-        self.canvas = Canvas(self.root, width=width, height=height, bg='white')
-        self.canvas.pack()
-        self.text = Text(width=30, height=4)
-        self.text.pack()
-        self.text.insert(1.0, 'You can draw:\ncircle\ntriangle\nrectangle')
 
+    def add(self, element):
+        self.canvas_list.append(element)
 
     def draw(self):
-        triangle.draw(painter.canvas)
-        rectangle.draw(painter.canvas)
-        circle.draw(painter.canvas)
-        self.root.mainloop()
+        for el in self.canvas_list:
+            el.draw()
+
+    def clean(self):
+        self.canvas_list = []
 
 
-painter = Engine2D(500, 500)
-triangle = Triangle(330, 80, 380, 10, 430, 80, '#f23233')
+class Engine2D:
+    def __init__(self, width, height, color='black'):
+        self.canvas = Canvas(width, height)
+        self.color = color
 
-rectangle = Rectangle(180, 10, 280, 80, 'lightgreen')
+    def draw(self):
+        self.canvas.draw()
+        self.canvas.clean()
 
-circle = Circle(20, 90, 90, 20, 'orange')
+    def change_color(self, color):
+        self.color = color
 
+
+painter = Engine2D(300, 300)
+triangle = Triangle(330, 80, 380, 10, 430, 80)
+painter.canvas.add(triangle)
+rectangle = Rectangle(180, 10, 280, 80)
+painter.canvas.add(rectangle)
+circle = Circle(20, 90, 20)
+painter.canvas.add(circle)
+circle2 = Circle(100, 200, 100)
+painter.canvas.add(circle2)
+painter.draw()
+painter.change_color('red')
+circle3 = Circle(100, 200, 100)
+painter.canvas.add(circle3)
+triangle4 = Triangle(330, 80, 380, 10, 430, 80)
+painter.canvas.add(triangle4)
 painter.draw()
