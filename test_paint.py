@@ -2,7 +2,7 @@ import unittest
 
 import pytest
 
-from paint import Circle, Engine2D, Rectangle, Triangle
+from paint import Circle, Engine2D
 
 
 class TestEgnine2D(unittest.TestCase):
@@ -44,20 +44,6 @@ class TestEgnine2D(unittest.TestCase):
         self.assertNotEqual(color_before, color_after,
                             'Цвет карандаша изменен')
 
+
 if __name__ == '__main__':
     pytest.main()
-
-# paint1 = Engine2D(300, 300)
-# t = Circle(0, 1, 5)
-# paint1.canvas.add(t)
-# paint1.change_color('red')
-# triangle = Triangle(330, 80, 380, 10, 430, 80)
-# paint1.canvas.add(triangle)
-# paint1.draw()
-# paint1.change_color('black')
-# paint1.canvas.add(t)
-# triangle = Triangle(330, 80, 380, 10, 430, 80)
-# paint1.canvas.add(triangle)
-# rect = Rectangle(2, 4, 6, 9)
-# paint1.canvas.add(rect)
-# paint1.draw()
