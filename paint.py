@@ -68,21 +68,3 @@ class Engine2D:
 
     def change_color(self, color):
         self.canvas.change_color(color)
-
-
-# painter = Engine2D(300, 300)
-# triangle = Triangle(330, 80, 380, 10, 430, 80)
-# painter.canvas.add(triangle)
-# rectangle = Rectangle(180, 10, 280, 80)
-# painter.canvas.add(rectangle)
-# circle = Circle(20, 90, 20)
-# painter.canvas.add(circle)
-# circle2 = Circle(100, 200, 100)
-# painter.canvas.add(circle2)
-# painter.draw()
-# painter.change_color('red')
-# circle3 = Circle(100, 200, 100)
-# painter.canvas.add(circle3)
-# triangle4 = Triangle(330, 80, 380, 10, 430, 80)
-# painter.canvas.add(triangle4)
-# painter.draw()
